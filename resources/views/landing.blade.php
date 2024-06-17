@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="{{URL::asset("favicon.png")}}">
     <title>Random Visual Novel Quote</title>
 </head>
-<body x-data="__states({{$quoteObject->toJson()}}, `{{URL::full()}}`)"
+<body x-data="__states({{$quoteObject->toJson()}}, `{{URL::route("landing")}}`)"
       class="bg-gradient-to-t from-zinc-900 via-zinc-900 to-zinc-800 w-full h-screen flex flex-col justify-between">
 <div class="w-full p-4 flex items-center justify-between md:justify-around text-sky-700">
     <div class="text-lg font-semibold select-none">
