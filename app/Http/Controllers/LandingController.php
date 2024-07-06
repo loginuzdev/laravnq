@@ -6,7 +6,6 @@ use App\Models\Quote;
 use App\Models\VnUrl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\URL;
 use Illuminate\View\View;
 use function App\Helpers\getQuoteFromVnDb;
 
@@ -27,7 +26,6 @@ class LandingController extends Controller
     public function apiGetQuotes(Request $request)
     {
         $page = $request->get("p", "1");
-//        $perPage = $request->get("p", 0);
         try {
             $page = intval($page);
         } catch (\Exception) {
@@ -38,7 +36,7 @@ class LandingController extends Controller
         $count = DB::table("quotes")->count("id");
 
         $maxPage = ceil($count / 10);
-        if($page > $maxPage) {
+        if ($page > $maxPage) {
             $page = $maxPage;
         }
         for ($i = 2; $i <= $maxPage; $i++) {
@@ -77,6 +75,7 @@ class LandingController extends Controller
     public function extracted(): bool
     {
         $call = getQuoteFromVnDb();
+
         if ($call['ok']) {
             $v = VnUrl::find($call['data']['vn_id']);
             if ($v === null) {
@@ -112,7 +111,6 @@ class LandingController extends Controller
                     "vn_id" => 696969,
                     "quote" => "Sorry we cannot get quote from server :'("
                 ]);
-                /** @noinspection PhpUndefinedFieldInspection */
                 $fallback->id = 696969;
                 $q = $fallback;
             }

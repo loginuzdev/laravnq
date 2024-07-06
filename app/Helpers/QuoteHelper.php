@@ -13,6 +13,7 @@ if (!function_exists('getQuoteFromVnDb')) {
         ];
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://vndb.org/d5.1");
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
